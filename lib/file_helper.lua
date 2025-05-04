@@ -1,50 +1,56 @@
---- file_helper.lua
+local file_helper = {}
+file_helper.__index = file_helper
 
-local FileHelper = {}
-FileHelper.__index = FileHelper
+-- Class method to create a new instance with a working directory
+function file_helper:instanced(path)
+  local base = shell.dir()
+  local full_path = fs.combine(base, path)
+  fs.makeDir(full_path)
 
-function FileHelper:exists(name)
-  return fs.exists(fs.combine(self.working_directory, name))
-end
-
-function FileHelper:serialize(name, data, overwrite)
-  local full_path = fs.combine(self.working_directory, name)
-  if not overwrite and fs.exists(full_path) then
-    error("File exists and overwrite not set", 0)
-  end
-  local handle = fs.open(full_path, "w")
-  handle.write(textutils.serialize(data))
-  handle.close()
-end
-
-function FileHelper:unserialize(name, default)
-  local full_path = fs.combine(self.working_directory, name)
-  if not fs.exists(full_path) then
-    return default
-  end
-  local handle = fs.open(full_path, "r")
-  local contents = handle.readAll()
-  handle.close()
-  local ok, result = pcall(textutils.unserialize, contents)
-  if ok and type(result) == "table" then
-    return result
-  end
-  return default
-end
-
-function FileHelper:delete(name)
-  local full_path = fs.combine(self.working_directory, name)
-  if fs.exists(full_path) then
-    fs.delete(full_path)
-  end
-end
-
-local function instanced(path)
-  local obj = setmetatable({}, FileHelper)
-  obj.working_directory = path ~= "" and path or "."
+  local obj = setmetatable({}, file_helper)
+  obj.working_directory = full_path
   return obj
 end
 
-return {
-  instanced = instanced
-}
+-- Serialize a table to file (pretty = true for textutils.serialize, false for JSON)
+function file_helper:serialize(name, data, pretty)
+  local file_path = fs.combine(self.working_directory, name)
+  local file = fs.open(file_path, "w")
+  if not file then error("Failed to open file for writing: " .. file_path, 0) end
+
+  if pretty then
+    file.write(textutils.serialize(data))
+  else
+    file.write(textutils.serializeJSON(data))
+  end
+  file.close()
+end
+
+-- Deserialize a file into a table, or return default if missing or corrupted
+function file_helper:unserialize(name, default)
+  local file_path = fs.combine(self.working_directory, name)
+  if not fs.exists(file_path) then return default end
+
+  local file = fs.open(file_path, "r")
+  if not file then return default end
+
+  local content = file.readAll()
+  file.close()
+
+  local success, result = pcall(textutils.unserialize, content)
+  if success and type(result) == "table" then
+    return result
+  else
+    return default
+  end
+end
+
+function file_helper:exists(name)
+  return fs.exists(fs.combine(self.working_directory, name))
+end
+
+function file_helper:delete(name)
+  return fs.delete(fs.combine(self.working_directory, name))
+end
+
+return file_helper
