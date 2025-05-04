@@ -4,11 +4,10 @@ local to_get = {
   -- External files (download from raw GitHub links)
   "extern:Dougdog.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/Dougdog.lua",
   "extern:lib/turtle_aid.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/lib/turtle_aid.lua",
+  "extern:lib/file_helper.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/lib/file_helper.lua",
+"extern:lib/logging.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/lib/logging.lua",
+"extern:lib/simple_argparse.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/lib/simple_argparse.lua",
 
-  -- Internal repo files (downloaded using RAW_URL base)
-  "lib/file_helper.lua:file_helper.lua",
-  "lib/logging.lua:logging.lua",
-  "lib/simple_argparse.lua:simple_argparse.lua",
 }
 
 local program_name = "DougDog"
