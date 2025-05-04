@@ -1,17 +1,17 @@
 --- Simple program to be used as an installer script. Copy to repos and insert what is needed.
 
 local to_get = {
-  "extern:dog.lua:https://raw.githubusercontent.com/Fatboychummy-CC/Dog/refresh/dog.lua",
-  "extern:lib/turtle_aid.lua:https://raw.githubusercontent.com/Fatboychummy-CC/Dog/refresh/lib/turtle_aid.lua",
+  "extern:dog.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/dog.lua",
+  "extern:lib/turtle_aid.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/lib/turtle_aid.lua",
   "lib/file_helper.lua:file_helper.lua",
   "lib/logging.lua:logging.lua",
   "lib/simple_argparse.lua:simple_argparse.lua",
 }
-local program_name = "Dog"
+local program_name = "DougDog"
 
 -- #########################################
 
-local RAW_URL = "https://raw.githubusercontent.com/Fatboychummy-CC/Libraries/main/"
+local RAW_URL = "https://raw.githubusercontent.com/Dogebooch/DougDog/main/"
 local PASTE_URL = "https://pastebin.com/raw/"
 local p_dir = ... or shell.dir()
 
