@@ -1,5 +1,5 @@
 --- Simple program to be used as an installer script. Copy to repos and insert what is needed.
-
+--- These are the URL's that will be used to download the files.
 local to_get = {
   "extern:dog.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/dog.lua",
   "extern:lib/turtle_aid.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/lib/turtle_aid.lua",
