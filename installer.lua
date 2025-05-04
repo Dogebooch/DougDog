@@ -2,7 +2,7 @@
 --- These are the URL's that will be used to download the files.
 local to_get = {
   -- External files (download from raw GitHub links)
-  "extern:dog.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/Dougdog.lua",
+  "extern:Dougdog.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/Dougdog.lua",
   "extern:lib/turtle_aid.lua:https://raw.githubusercontent.com/Dogebooch/DougDog/main/lib/turtle_aid.lua",
 
   -- Internal repo files (downloaded using RAW_URL base)
