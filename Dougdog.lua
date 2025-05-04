@@ -16,8 +16,8 @@ local logging = require("logging")
 local simple_argparse = require("simple_argparse")
 
 -- Constants
-local LOG_FILE = fs.combine(data_folder.working_directory, ("dog%d.log"):format(math.random(0, 100000))) -- Logger does not use file_helper, so we need to manually tell it to use this directory.
-local STATE_FILE = "dog.state"
+local LOG_FILE = fs.combine(data_folder.working_directory, ("DougDog%d.log"):format(math.random(0, 100000))) -- Logger does not use file_helper, so we need to manually tell it to use this directory.
+local STATE_FILE = "DougDog.state"
 
 -- Variables
 local main_win = term.current()
@@ -31,10 +31,10 @@ local max_offset = 8
 local scan = nil ---@type fun():table<integer, table> Set during initialization.
 local do_fuel = false
 local horizontal = false
-local version = "V0.14.3"
+local version = "V0.1.0"
 local latest_changes = [[Added a few more blocks as ores. If you wish to add some that are missing, PRs are open!]]
 
-local parser = simple_argparse.new_parser("dog", "Dog is a program run on mining turtles which is used to find ores and mine them. Unlike quarry programs, this program digs in a straight line down and uses either plethora's block scanner or advanced peripheral's geoscanner to detect where ores are along its path and mine to them.")
+local parser = simple_argparse.new_parser("DougDog", "DougDog is a program run on mining turtles which is used to find ores and mine them. Unlike quarry programs, this program digs in a straight line down and uses either Plethora's block scanner or Advanced Peripherals' geoscanner to detect where ores are along its path and mine them.")
 parser.add_option("depth", "The maximum depth to dig to.", max_depth)
 parser.add_option("loglevel", "The log level to use.", "INFO")
 parser.add_option("georange", "The range to use for the geoscanner, if using Advanced Peripherals.", geoscanner_range)
